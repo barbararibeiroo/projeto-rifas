@@ -32,9 +32,9 @@ public class CadastroUsuarioController {
         return cadastroUsuarioRepository.findAll();
     }
 
-    @GetMapping("/{cadastroUsuarioId}")
-    public ResponseEntity<CadastroUsuario> buscar(@PathVariable Long cadastroUsuarioId) {
-        return cadastroUsuarioRepository.findById(cadastroUsuarioId)
+    @GetMapping("/{usuarioId}")
+    public ResponseEntity<CadastroUsuario> buscar(@PathVariable Long usuarioId) {
+        return cadastroUsuarioRepository.findById(usuarioId)
             .map(ResponseEntity::ok)
             .orElse(ResponseEntity.notFound().build());
     }
@@ -45,22 +45,22 @@ public class CadastroUsuarioController {
         return cadastroUsuarioService.salvar(cadastroUsuario);
     }
 
-    @PutMapping("/{cadastroUsuarioId}")
-    public ResponseEntity<CadastroUsuario> atualizaUsuario(@PathVariable Long cadastroUsuarioId, @Valid @RequestBody CadastroUsuario cadastroUsuario) {
-        if (!cadastroUsuarioRepository.existsById(cadastroUsuarioId)) {
+    @PutMapping("/{usuarioId}")
+    public ResponseEntity<CadastroUsuario> atualizaUsuario(@PathVariable Long usuarioId, @Valid @RequestBody CadastroUsuario cadastroUsuario) {
+        if (!cadastroUsuarioRepository.existsById(usuarioId)) {
             return ResponseEntity.notFound().build();
         }
-        cadastroUsuario.setId(cadastroUsuarioId);
+        cadastroUsuario.setId(usuarioId);
         cadastroUsuario = cadastroUsuarioService.salvar(cadastroUsuario);
         return ResponseEntity.ok(cadastroUsuario);
     }
 
-    @DeleteMapping("/{cadastroUsuarioId}")
-    public ResponseEntity<Void> removerCadastro(@PathVariable Long cadastroUsuarioId) {
-        if (!cadastroUsuarioRepository.existsById(cadastroUsuarioId)) {
+    @DeleteMapping("/{usuarioId}")
+    public ResponseEntity<Void> removerCadastro(@PathVariable Long usuarioId) {
+        if (!cadastroUsuarioRepository.existsById(usuarioId)){
             return ResponseEntity.notFound().build();
         }
-        cadastroUsuarioService.excluir(cadastroUsuarioId);
+        cadastroUsuarioService.excluir(usuarioId);
         return ResponseEntity.noContent().build();
     }
 

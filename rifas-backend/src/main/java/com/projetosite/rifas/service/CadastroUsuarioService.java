@@ -1,11 +1,15 @@
 package com.projetosite.rifas.service;
 
+
+
+import com.projetosite.rifas.exception.EntidadeNaoEncontradaException;
 import com.projetosite.rifas.exception.NegocioException;
 import com.projetosite.rifas.model.CadastroUsuario;
 import com.projetosite.rifas.repository.CadastroUsuarioRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
 
 @AllArgsConstructor
 @Service
@@ -14,9 +18,10 @@ public class CadastroUsuarioService {
     private CadastroUsuarioRepository cadastroUsuarioRepository;
 
     @Transactional
-    public CadastroUsuario buscar(Long cadastroUsuarioId) {
-        return cadastroUsuarioRepository.findById(cadastroUsuarioId)
-            .orElseThrow(() -> new NegocioException("Cliente não encontrado"));
+    public CadastroUsuario buscar(Long usuarioId) {
+        return cadastroUsuarioRepository.findById(usuarioId)
+            .orElseThrow(() -> new EntidadeNaoEncontradaException("Cadastro não encontrado"));
+
     }
 
     @Transactional
@@ -32,8 +37,8 @@ public class CadastroUsuarioService {
     }
 
     @Transactional
-    public void excluir(Long cadastroUsuarioId) {
-        cadastroUsuarioRepository.deleteById(cadastroUsuarioId);
+    public void excluir(Long usuarioId) {
+        cadastroUsuarioRepository.deleteById(usuarioId);
 
     }
 }
