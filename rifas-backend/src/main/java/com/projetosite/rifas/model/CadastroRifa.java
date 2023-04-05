@@ -18,7 +18,9 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-public class CadastroRifa {
+public class CadastroRifa implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @EqualsAndHashCode.Include
     @Id
