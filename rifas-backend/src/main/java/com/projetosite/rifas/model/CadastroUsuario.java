@@ -4,7 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -13,9 +12,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.Serializable;
-
-
 import java.util.Objects;
 
 
@@ -23,9 +19,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
-public class CadastroUsuario implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class CadastroUsuario  {
 
     @EqualsAndHashCode.Include
     @Id

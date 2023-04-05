@@ -21,7 +21,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/cadastroRifa")
+@RequestMapping("/rifas")
 public class CadastroRifaController {
 
     private CadastroRifaRepository cadastroRifaRepository;
@@ -32,35 +32,35 @@ public class CadastroRifaController {
         return cadastroRifaRepository.findAll();
     }
 
-    @GetMapping("/{cadastroRifaId}")
-    public ResponseEntity<CadastroRifa> buscar(@PathVariable Long cadastroRifaId) {
-        return cadastroRifaRepository.findById(cadastroRifaId)
+    @GetMapping("/{rifaId}")
+    public ResponseEntity<CadastroRifa> buscar(@PathVariable Long rifaId) {
+        return cadastroRifaRepository.findById(rifaId)
             .map(ResponseEntity::ok)
             .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CadastroRifa cadastrar(@Valid @RequestBody CadastroRifa cadastroRifa) {
-        return cadastroRifaService.salvarRifa(cadastroRifa);
+    public CadastroRifa cadastrar(@Valid @RequestBody CadastroRifa rifaId) {
+        return cadastroRifaService.salvarRifa(rifaId);
     }
 
-    @PutMapping("/{cadastroRifaId}")
-    public ResponseEntity<CadastroRifa> atualizaRifa(@PathVariable Long cadastroRifaId, @Valid @RequestBody CadastroRifa cadastroRifa) {
-        if (!cadastroRifaRepository.existsById(cadastroRifaId)) {
+    @PutMapping("/{rifaId}")
+    public ResponseEntity<CadastroRifa> atualizaRifa(@PathVariable Long rifaId, @Valid @RequestBody CadastroRifa cadastroRifa) {
+        if (!cadastroRifaRepository.existsById(rifaId)) {
             return ResponseEntity.notFound().build();
         }
-        cadastroRifa.setId(cadastroRifaId);
+        cadastroRifa.setId(rifaId);
         cadastroRifa = cadastroRifaService.salvarRifa(cadastroRifa);
         return ResponseEntity.ok(cadastroRifa);
     }
 
-    @DeleteMapping("/{cadastroRifaId}")
-    public ResponseEntity<Void> removerCadastro(@PathVariable Long cadastroRifaId) {
-        if (!cadastroRifaRepository.existsById(cadastroRifaId)) {
+    @DeleteMapping("/{rifaId}")
+    public ResponseEntity<Void> removerCadastro(@PathVariable Long rifaId) {
+        if (!cadastroRifaRepository.existsById(rifaId)) {
             return ResponseEntity.notFound().build();
         }
-        cadastroRifaService.excluir(cadastroRifaId);
+        cadastroRifaService.excluir(rifaId);
         return ResponseEntity.noContent().build();
     }
 

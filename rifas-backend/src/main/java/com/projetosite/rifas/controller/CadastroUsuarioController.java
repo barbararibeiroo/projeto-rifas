@@ -21,7 +21,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/cadastroUsuario")
+@RequestMapping("/usuarios")
 public class CadastroUsuarioController {
 
     private CadastroUsuarioRepository cadastroUsuarioRepository;

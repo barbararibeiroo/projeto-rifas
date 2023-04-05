@@ -22,7 +22,7 @@ public class CadastroRifaService {
     @Transactional
     public CadastroRifa buscar(Long cadastroRifaId) {
         return cadastroRifaRepository.findById(cadastroRifaId)
-            .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+            .orElseThrow(() -> new RuntimeException("rifa não encontrada"));
 
     }
 
